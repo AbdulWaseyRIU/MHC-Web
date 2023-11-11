@@ -14,7 +14,7 @@
                 <a href="/">Home</a>
                 <a href="#">About our Software</a>
                 <a href="scan">Scan</a>
-                <a href="#">Contact</a>
+                <a href="contact">Contact</a>
             </nav>
         </div>
     </header>
