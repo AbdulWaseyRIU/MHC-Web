@@ -8,6 +8,7 @@
                 <p>Your trusted partner for child healthcare.</p>
             </div>
         </div>
+
         <div class="top-bar">
             <div class="logo">Maternity Health Care System</div>
             <nav class="nav">
@@ -15,6 +16,15 @@
                 <a href="#">About our Software</a>
                 <a href="scan">Scan</a>
                 <a href="contact">Contact</a>
+
+                <!-- Profile icon and options -->
+                <div class="profile-icon">
+                    <a href=""><i class="fa fa-fw fa-user"></i></a>
+                    <div class="profile-options">
+                        <a href="#">Reports</a>
+                        <a href="">Logout</a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>

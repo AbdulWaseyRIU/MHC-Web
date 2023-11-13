@@ -27,7 +27,7 @@ header img {
     object-fit: cover;
 }
 .top-bar {
-    background-color: rgba(37, 31, 31, 0.5); /* Transparent black background */
+    background-color: rgba(37, 31, 31, 0.5);
     position: absolute;
     top: 0;
     left: 0;
@@ -36,7 +36,7 @@ header img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 2; /* Ensure the top bar is above the header image */
+    z-index: 2;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -47,6 +47,8 @@ header img {
 }
 
 .top-bar .nav {
+    display: flex;
+    align-items: center;
     margin-right: 20px;
 }
 
@@ -54,15 +56,30 @@ header img {
     color: white;
     text-decoration: none;
     margin-left: 20px;
-    transition: color 0.3s ease; /* Smooth color transition */
+    transition: color 0.3s ease;
 }
 
-/* Style for the top bar background on hover */
-.top-bar:hover {
-    background-color: rgba(37, 31, 31, 0.7); /* Darker background on hover */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+.top-bar .nav .profile-icon {
+    order: 1; /* Place the profile link after the contact link */
 }
 
+.top-bar .nav .profile-options {
+    display: none;
+    position: absolute;
+    top: 65%;
+    right: 0;
+    background-color: rgba(37, 31, 31, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.top-bar .nav .profile-icon:hover .profile-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .slider-container {
     position: relative;
 }
