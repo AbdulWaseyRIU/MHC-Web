@@ -10,6 +10,11 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 header {
     position: relative;
     height: 45vh; /* Set the height of the header */
@@ -21,13 +26,6 @@ header img {
     height: 100%;
     object-fit: cover;
 }
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .top-bar {
     background-color: rgba(37, 31, 31, 0.5); /* Transparent black background */
     position: absolute;
@@ -129,7 +127,6 @@ header img {
 }
 
 main{
-    color: white;
 
     padding-top: 66px;
 }
@@ -208,7 +205,6 @@ main{
 
 .wrapper {
     margin: 0 auto;
-     /* Set to 100% to make sure it doesn't exceed the parent width */
     max-width:100%;
     background: rgba(0, 0, 0, 0.8);
     padding: 30px;
@@ -279,8 +275,136 @@ main{
       color: #fff;
       cursor: pointer;
       text-transform: uppercase;
-  }
 
+    }
+    .custom-session-status {
+        /* Your custom styling for the session status component */
+        font-size: 16px;
+        color: #333;
+        /* Add any other styles as needed */
+    }
+  form {
+    background-color: rgba(141, 137, 137, 0.7);
+
+    border-radius: 8px; /* Add border-radius for a rounded look */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    padding: 20px; /* Add padding for spacing inside the form */
+    max-width: 400px; /* Limit the width of the form */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Add spacing between form groups */
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+    display: block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #3490dc;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.remember-me input {
+    margin-right: 8px;
+}
+
+.login-button {
+    background-color: #3490dc;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.login-button:hover {
+    background-color: #2779bd;
+}
+
+.forgot-password {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    text-align: right;
+    display: block;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: #3490dc;
+}
+
+.register-form {
+    width: 75%;
+    margin: 0 auto;
+    background-color: rgba(141, 137, 137, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.login-link {
+    margin-left: 10px;
+}
+
+.input-error {
+    color: #ff0000; /* Set the color to red or your preferred error color */
+    font-size: 14px;
+    margin-top: 8px;
+    text-decoration: none;/* Adjust the margin for spacing */
+}
+
+.registration-link {
+    margin-top: 10px; /* Adjust as needed */
+}
+
+.registration-link a {
+    text-decoration: none;
+}
+
+.registration-link a:hover {
+    text-decoration: underline; /* Add an underline on hover */
+}
   @media screen and (max-width: 600px){
     .contact-form{
       flex-direction: column;
