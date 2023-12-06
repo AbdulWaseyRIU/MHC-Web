@@ -20,9 +20,19 @@ Route::get('/', function () {
 Route::get('contact', function () {
     return view('contact');
 });
+Route::get('report', function () {
+    return view('report');
+});
+Route::get('previousreport', function () {
+    return view('previousreport');
+});
 Route::get('scan', function () {
     return view('scan');
-})->middleware(['auth', 'verified'])->name('scan');
+});
+Route::get('about', function () {
+    return view('aboutsoftware');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });

@@ -1,10 +1,10 @@
 @extends('Layout.app')
 @section('content')
 <main>
-    <div class="main-container"><h2>Register First</h2>
+    <div class="container">
         <form method="POST" action="{{ route('register') }}" class="register-form">
             @csrf
-
+            <h2>Register First</h2>
             <!-- Name -->
             <div class="form-group">
                 <label for="name" class="form-label">Name</label>

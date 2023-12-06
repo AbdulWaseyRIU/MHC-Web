@@ -2,14 +2,14 @@
 @section('content')
 <main >
     <!-- Session Status -->
-    <div class="main-container">
-        <h2>Login First</h2>
+    <div class="container">
+
     <div>
         <x-auth-session-status class="custom-session-status" :status="session('status')" />
 
 </div>
     <form method="POST" action="{{ route('login') }}">
-        @csrf
+        @csrf <h2>Login First</h2>
 
         <!-- Email Address -->
         <div class="form-group">
@@ -34,7 +34,7 @@
                 <a href="{{ route('password.request') }}" class="forgot-password">Forgot your password?</a>
             @endif
 
-            <button type="submit" class="login-button">Log in</button>
+            <a href="scan" class="login-button">Log in</a>
         </div>  <!-- Registration Link -->
         <div class="registration-link">
          <a href="{{ route('register') }}">Don't have an account? Register now!</a>

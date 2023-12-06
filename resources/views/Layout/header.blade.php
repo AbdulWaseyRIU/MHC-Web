@@ -13,29 +13,19 @@
             <div class="logo">Maternity Health Care System</div>
             <nav class="nav">
                 <a href="/">Home</a>
-                <a href="#">About our Software</a>
-                <a href="scan">Scan</a>
+                <a href="about">About our Software</a>
+                <a href="login">Scan</a>
                 <a href="contact">Contact</a>
 
                 <!-- Profile icon and options -->
                 <div class="profile-icon">
                     <a href=""><i class="fa fa-fw fa-user"></i></a>
                     <div class="profile-options">
-                        <a href="#">Reports</a>
+                        <a href="previousreport">Reports</a>
                         <a href="">Logout</a>
                     </div>
                 </div>
             </nav>
         </div>
     </header>
-    <div class="centered-box">
-        <div class="box-row">
-            <h2 class="centered-text h2">Our Services</h2>
-        </div>
-        <div class="box-row">
 
-            <div class="box-item">Gender Detection</div>
-            <div class="box-item">Fetus Growth</div>
-        </div>
-
-    </div>
