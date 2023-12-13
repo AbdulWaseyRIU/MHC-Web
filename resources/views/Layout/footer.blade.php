@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="footer-col">
                     <h4>Maternity Health Care System</h4>
-                    <p>Providing a Software that</p>
+                    <p>Welcome to Maternity Health Care System</p>
                 </div>
                 <div class="footer-col">
                     <h4>Developed By</h4>

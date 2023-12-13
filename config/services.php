@@ -30,5 +30,14 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'firebase' => [
+        'apiKey' => 'AIzaSyDS56mPIYJc4MHNcDAzpv2NbbzbEZ8K3Bo',
+        'authDomain' => 'mhc-web-4e434.firebaseapp.com',
+        'databaseURL' => 'https://mhc-web-4e434-default-rtdb.firebaseio.com',
+        'projectId' => 'mhc-web-4e434',
+        'storageBucket' => 'mhc-web-4e434.appspot.com',
+        'messagingSenderId' => '79254490741',
+        'appId' => '1:79254490741:web:8489f685a3a5ac4061b23c',
+        'measurementId' => 'G-G1TEKKRZ4Z',
+    ],
 ];

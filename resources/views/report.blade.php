@@ -2,13 +2,13 @@
 @section('content')
 <main>
     <div id="pdf-content">
-
         <div class="container">
             <div class="wrapper">
-                <button class="report-link" onclick="generatePDF()">Download PDF</button>
+                <img class="background-image" src="{{ asset('graphics/template.jpg')}}" alt="">
+
                 <div class="row">
                     <div class="column">
-                        <h1>Report</h1>
+
                     </div>
                     <div class="column">Logo</div>
                 </div>
@@ -19,8 +19,8 @@
                         <th>MATERNITY HEALTHCARE</th>
                     </tr>
                     <tr>
-                        <td>Date</td>
-                        <td>Number</td>
+                        <td><p>{{ now()->format('Y-m-d H:i:s') }}</p></td>
+                        <td><p> {{ rand(1, 100) }}</p></td>
                         <td>Phone</td>
                     </tr>
                     <tr>
@@ -29,12 +29,12 @@
                         <td>Email</td>
                     </tr>
                 </table>
-                <div>
+                <div class="patient-details">
                     <p>Report to</p>
-                    <p>NAME</p>
-                    <p>AGE</p>
-                    <p>Phone</p>
-                    <p>Email</p>
+                    <p>NAME:XYZ </p>
+                    <p>AGE:31</p>
+                    <p>Phone:051-MHCSystem</p>
+                    <p>Email:MHC@MHC.COM</p>
                 </div>
                 <p></p>
                 <table>
@@ -53,11 +53,11 @@
                         <td>92&percnt;</td>
                         <td>Normal</td>
                     </tr>
-                </table>
-                <p>Recommendations and Follow-up: (Based on growth)</p>
+                </table>   <button class="report-link" onclick="generatePDF()">Download PDF</button>
+           <div class="recommendations">     <p>Recommendations and Follow-up: (Based on growth)</p>
                 <p>- Follow-up Actions: [Recommended actions or further tests] </p>
                 <p>- Guidance: [Instructions based on findings]</p>
-
+            </div>
                 <div class="disclaimer">
                     Disclaimer:
                     <p>"We do not store your uploaded data. This report is for informational purposes only." </p>

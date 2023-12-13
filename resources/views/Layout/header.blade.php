@@ -5,12 +5,14 @@
             <img src="{{ asset('graphics/slider.jpg')}}" alt="">
          <div class="slider-text">
                 <h2>Welcome to Maternity Health Care System</h2>
-                <p>Your trusted partner for child healthcare.</p>
+
             </div>
         </div>
 
         <div class="top-bar">
             <div class="logo">Maternity Health Care System</div>
+
+
             <nav class="nav">
                 <a href="/">Home</a>
                 <a href="about">About our Software</a>
@@ -28,4 +30,8 @@
             </nav>
         </div>
     </header>
-
+    <script>
+        document.getElementById("menu-toggle").addEventListener("change", function () {
+            document.body.classList.toggle("menu-open", this.checked);
+        });
+    </script>
