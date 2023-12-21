@@ -5,16 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use Kreait\Firebase\Exception\Auth\UidMismatch;
 use Kreait\Laravel\Firebase\Facades\Firebase;
+use App\Http\Controllers\HomeController;
 
-Route::get('/firebase-users', function () {
 
-        // Get all users from Firebase Authentication
-        $users = Firebase::auth()->listUsers();
-
-        // Display users
-        return view('firebase-users', ['users' => $users]);
-
-});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,17 +51,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/check', function () {
-    try {
-        // Attempt to connect to the database
-        dd(DB::connection()->getPdo());
 
-        // If the connection is successful, print connection details
-        $databaseConnectionDetails = config('database.connections.' . config('database.default'));
-        dd($databaseConnectionDetails);
-    } catch (\Exception $e) {
-        // If an exception is caught, print the error message
-        dd($e->getMessage());
-    }
-});
 require __DIR__.'/auth.php';

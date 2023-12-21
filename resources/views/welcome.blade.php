@@ -4,7 +4,9 @@
     <section>
 <div class="container">
     <div class="about-container">
-        <div class="about-item"> <h2>Discovering Gender and Growth </h2></div>
+        <div class="about-item"> 
+            <img src="{{ asset('graphics/ultrasound-image.jpg') }}" alt="US" id="us-image">
+            <h2 id="head">Discovering Gender and Growth </h2></div>
         <div class="about-item"><p>
             Welcome to our digital sanctuary, where technology meets the miracle of life. At Maternity Health Care System, we're on a mission to bring clarity and understanding to the beautiful journey of pregnancy.
 

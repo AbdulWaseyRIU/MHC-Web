@@ -1,6 +1,6 @@
 @extends('Layout.app')
 @section('content')
-<main ><div class="container">
+<main ><div class="contact-container">
      <div class="contact-form">
        <div class="first-container">
         <div class="info-container">
