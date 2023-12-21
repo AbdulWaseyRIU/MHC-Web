@@ -1,7 +1,7 @@
 <header>
     <div class="slider-container">
         @if(request()->is('/'))
-            <img src="{{ asset('graphics/scan.jpg')}}" alt="">
+            <img src="{{ asset('graphics/slider.jpg')}}" alt="">
             <div class="slider-text">
                 <h2>Welcome to Maternity Health Care System</h2>
             </div>
@@ -39,8 +39,8 @@
                     <h2>Your Previous report</h2>
                 @endif
             </div>
-        @elseif(request()->is('page5'))
-            <img src="{{ asset('graphics/slider_page5.jpg')}}" alt="">
+        @elseif(request()->is('forgot-password'))
+            <img src="{{ asset('graphics/login.webp')}}" alt="">
             <div class="slider-text">
                 <h2>Welcome to Maternity Health Care System</h2>
             </div>
