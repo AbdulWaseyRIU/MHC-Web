@@ -40,7 +40,12 @@ Route::get('scan', function () {
 Route::get('about', function () {
     return view('aboutsoftware');
 });
-
+Route::get('privacy', function () {
+    return view('privacypolicy');
+});
+Route::get('term', function () {
+    return view('termsofuse');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 });

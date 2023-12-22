@@ -30,6 +30,16 @@
             <div class="slider-text">
                 <h2>Register here</h2>
             </div>
+            @elseif(request()->is('privacy'))
+            <img src="{{ asset('graphics/privacy.jpg')}}" alt="">
+            <div class="slider-text">
+                <h2>Privacy and policy</h2>
+            </div>
+            @elseif(request()->is('term'))
+            <img src="{{ asset('graphics/terms.jpg')}}" alt="">
+            <div class="slider-text">
+                <h2>Terms of use</h2>
+            </div>
         @elseif(request()->is('report') || request()->is('previousreport'))
             <img src="{{ asset('graphics/medical.png')}}" alt="">
             <div class="slider-text">
@@ -45,6 +55,7 @@
                 <h2>Welcome to Maternity Health Care System</h2>
             </div>
         @endif
+
     </div>
 
     <div class="top-bar"> <div class="logo-container">
