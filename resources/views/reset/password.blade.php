@@ -1,55 +1,69 @@
-@extends('layouts.app')
+@extends('Layout.app')
 
 @section('content')
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">Reset Password</div>
-          <div class="card-body">
+  <div class="main-container">
 
-            @if(Session::has('message'))
-              <div class="alert alert-info alert-dismissible fade show">
-                {{ Session::get('message') }}
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-              </div>
-            @endif
-
-            @if(Session::has('error'))
-              <div class="alert alert-danger alert-dismissible fade show">
-                {{ Session::get('error') }}
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-              </div>
-            @endif
-
-            @if ($errors->any())
-              @foreach ($errors->all() as $error)
-                <div class="alert alert-danger alert-dismissible fade show">
-                  {{ $error }}
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                </div>
-              @endforeach
-            @endif
 
             {!! Form::open(['method'=>'POST', 'action'=> 'App\Http\Controllers\Auth\ResetController@store']) !!}
 
+                @if(Session::has('message'))
+                <div>
+                  {{ Session::get('message') }}
+
+                </div>
+              @endif
+
+              @if(Session::has('error'))
+                <div >
+                  {{ Session::get('error') }}
+
+                </div>
+              @endif
+
+              @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                  <div >
+                    {{ $error }}
+
+                  </div>
+                @endforeach
+              @endif
+
             <div class="form-group">
-              {!! Form::label('email', 'Email:') !!}
+              {!! Form::label('email', '     Enter Your Email:') !!}
               {!! Form::email('email', null, ['class'=>'form-control'])!!}
+              <span class="error-message" id="emailError"></span>
+
             </div>
 
 
             <div class="form-group">
-              {!! Form::submit('Sent Email', ['class'=>'btn btn-primary']) !!}
+                {!! Form::submit('Sent Email', ['class'=>'custom-submit-button']) !!}
             </div>
-
             {!! Form::close() !!}
 
           </div>
 
-        </div>
-      </div>
-    </div>
-  </div>
+
+          <script>
+
+
+            function validateEmail() {
+                var emailInput = document.getElementById('email');
+                var emailError = document.getElementById('emailError');
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailRegex.test(emailInput.value)) {
+                    emailError.textContent = 'Enter a valid email address';
+                } else {
+                    emailError.textContent = '';
+                }
+            }
+
+
+
+            document.getElementById('email').addEventListener('keyup', validateEmail);
+
+        </script>
 @endsection
