@@ -78,21 +78,5 @@ class LoginController extends Controller
     {
         return "email";
     }
-    public function handleCallback(Request $request, $provider)
-    {
-        $socialTokenId = $request->input("social-login-tokenId", "");
-        try {
-            $verifiedIdToken = $this->auth->verifyIdToken($socialTokenId);
-            $user = new User();
-            $user->displayName = $verifiedIdToken->getClaim("name");
-            $user->email = $verifiedIdToken->getClaim("email");
-            $user->localId = $verifiedIdToken->getClaim("user_id");
-            Auth::login($user);
-            return redirect($this->redirectPath());
-        } catch (\InvalidArgumentException $e) {
-            return redirect()->route("login");
-        } catch (InvalidToken $e) {
-            return redirect()->route("login");
-        }
-    }
+
 }

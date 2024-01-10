@@ -49,17 +49,20 @@
           <script>
 
 
-            function validateEmail() {
-                var emailInput = document.getElementById('email');
-                var emailError = document.getElementById('emailError');
-                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function validateEmail() {
+    var emailInput = document.getElementById('email');
+    var emailError = document.getElementById('emailError');
+    // Updated regex to ensure the email does not start with a dot
+    var emailRegex = /^[^\s@.][^\s@]*@[^\s@]+\.[^\s@]+$/;
 
-                if (!emailRegex.test(emailInput.value)) {
-                    emailError.textContent = 'Enter a valid email address';
-                } else {
-                    emailError.textContent = '';
-                }
-            }
+    if (!emailRegex.test(emailInput.value)) {
+        emailError.textContent = 'Enter a valid email address';
+        return false; // Return false to indicate validation failure
+    } else {
+        emailError.textContent = '';
+        return true; // Return true to indicate validation success
+    }
+}
 
 
 

@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/email/verify', [App\Http\Controllers\Auth\ResetController::class, 'verify_email'])->name('verify')->middleware('fireauth');
 
-Route::post('login/{provider}/callback', 'Auth\LoginController@handleCallback');
+
 
 Route::resource('profile', App\Http\Controllers\Auth\ProfileController::class)->middleware('user','fireauth');
 
@@ -35,6 +35,7 @@ Route::get('scan', 'App\Http\Controllers\HomeController@scan')->middleware(['use
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/about', function () {
     return view('aboutsoftware');
 });

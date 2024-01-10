@@ -5,7 +5,7 @@
 
     <section>
 <div class="main-container">
-    <div class="grid-container">
+    <div class="aboutgrid-container">
     <div class="column1">
         <!-- Content for the first column (60%) goes here -->
         <p>

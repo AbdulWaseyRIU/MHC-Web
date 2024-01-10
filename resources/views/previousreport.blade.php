@@ -7,90 +7,45 @@
 
                 <div class="row">
                     <div class="column">
-
+                        <img id="logo" src="{{ asset('graphics/logo1-modified.png')}}" alt=""><p>Maternity Health Care</p>
                     </div>
-                    <div class="column">Logo</div>
+                    <div class="column"></div>
                 </div>
-                <table id="tablebigscreen">
+
+
+                <table class="previousreports">
                     <tr>
                         <th>Report No.</th>
+                        <td>{{ $user->uid }}</td>
+                        <td>{{ $user->uid }}</td>
+
+                    </tr>
+                    <tr>
                         <th>Name</th>
-                        <th>Gender Detection</th>
-                        <th>Gender Accuracy</th>
-                        <th>Growth Detection</th>
-                        <th>Growth Accuracy</th>
-
-                    </tr>
-                    <tr>
-                        <td>{{ $user->uid }}</td>
                         <td>John Doe</td>
-                        <td>Male</td>
-                        <td>89%</td>
-                        <td>Normal</td>
-                        <td>92%</td>
-
+                        <td>John Doe</td>
                     </tr>
                     <tr>
-                        <td>{{ $user->uid }}</td>
-                        <td>Jane Doe</td>
+                        <th>Gender Detection</th>
+                        <td>Male</td>
                         <td>Female</td>
-                        <td>95%</td>
-                        <td>Above Average</td>
-                        <td>88%</td>
-
-                    </tr>
-                </table>
-
-                <table id="previousreports">
-                    <tr>
-                        <th>Report No.</th>
-                        <td>{{ $user->uid }}</td>
-                    </tr>
-                    <tr>
-                        <th>Name</th>
-                        <td>John Doe</td>
-                    </tr>
-                    <tr>
-                        <th>Gender Detection</th>
-                        <td>Male</td>
                     </tr>
                     <tr>
                         <th>Gender Accuracy</th>
-                        <td>32</td>
+                        <td>72</td>
+                        <td>64</td>
                     </tr>
                     <tr>
                         <th>Growth Detection</th>
                         <td>Normal</td>
+                        <td>Abormal</td>
                     </tr>
                     <tr>
                         <th>Growth Accuracy</th>
-                        <td>31</td>
+                        <td>81</td>
+                        <td>91</td>
                     </tr>
-                    <th></th>
-                    <tr>
-                        <th>Report No.</th>
-                        <td>{{ $user->uid }}</td>
-                    </tr>
-                    <tr>
-                        <th>Name</th>
-                        <td>John Doe</td>
-                    </tr>
-                    <tr>
-                        <th>Gender Detection</th>
-                        <td>Male</td>
-                    </tr>
-                    <tr>
-                        <th>Gender Accuracy</th>
-                        <td>32</td>
-                    </tr>
-                    <tr>
-                        <th>Growth Detection</th>
-                        <td>Normal</td>
-                    </tr>
-                    <tr>
-                        <th>Growth Accuracy</th>
-                        <td>31</td>
-                    </tr>
+
                 </table>
 
                 <div class="disclaimer">

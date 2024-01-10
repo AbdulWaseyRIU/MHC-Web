@@ -2,20 +2,36 @@
 
 @section('content')
 <div class="form-area">
-    <div class="main-container">
+    <div class="main-container"> @if(Session::has('error'))
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ Session::get('error') }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        @endif
         <form method="POST" action="{{ route('login') }}" id="loginForm">
             @csrf
 
             <div class="form-group">
                 <label for="email">{{ __('Email Address') }}</label>
-                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" >
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 <span class="error-message" id="emailError"></span>
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
 
             <div class="form-group">
                 <label for="password">{{ __('Password') }}</label>
-                <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
                 <span class="error-message" id="passwordError"></span>
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -34,35 +50,5 @@
         </form>
         </div>
         </div>
-
-        <script>
-        function validateEmail() {
-            var emailInput = document.getElementById('email');
-            var emailError = document.getElementById('emailError');
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!emailRegex.test(emailInput.value)) {
-                emailError.textContent = 'Enter a valid email address';
-            } else {
-                emailError.textContent = '';
-            }
-        }
-
-        function validatePassword() {
-            var passwordInput = document.getElementById('password');
-            var passwordError = document.getElementById('passwordError');
-
-            if (passwordInput.value.length < 6) {
-                passwordError.textContent = 'Password must be at least 6 characters';
-            } else {
-                passwordError.textContent = '';
-            }
-        }
-
-        // Add keyup event listeners to trigger validation on keypress
-        document.getElementById('email').addEventListener('keyup', validateEmail);
-        document.getElementById('password').addEventListener('keyup', validatePassword);
-        </script>
-
-
-    @endsection
+        @include('javascript.loginform-validation')
+   @endsection

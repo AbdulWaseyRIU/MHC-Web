@@ -33,7 +33,7 @@
             @elseif(request()->is('profile'))
             <img src="{{ asset('graphics/login.webp')}}" alt="">
             <div class="slider-text">
-                <h2>Change Password</h2>
+                <h2>Profile</h2>
             </div>
             @elseif(request()->is('newpassword'))
             <img src="{{ asset('graphics/login.webp')}}" alt="">
