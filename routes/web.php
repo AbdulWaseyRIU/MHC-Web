@@ -23,10 +23,11 @@ Route::get('/email/verify', [App\Http\Controllers\Auth\ResetController::class, '
 
 
 
-Route::resource('profile', App\Http\Controllers\Auth\ProfileController::class)->middleware('user','fireauth');
+Route::resource('profile', App\Http\Controllers\Auth\ProfileController::class)->middleware('user', 'fireauth');
 
 Route::resource('/password/reset', App\Http\Controllers\Auth\ResetController::class);
 
+Route::get('/user-predictions', [HomeController::class, 'getUserPredictions']);
 
 Route::get('report', 'App\Http\Controllers\HomeController@report')->middleware(['user', 'fireauth']);
 Route::get('previousreport', 'App\Http\Controllers\HomeController@previousreport')->middleware(['user', 'fireauth']);
@@ -35,6 +36,8 @@ Route::get('scan', 'App\Http\Controllers\HomeController@scan')->middleware(['use
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('uploadimg', [HomeController::class, 'uploadImage'])->name('uploadimg');
+
 
 Route::get('/about', function () {
     return view('aboutsoftware');
@@ -55,5 +58,8 @@ Route::get('changepassword', function () {
 Route::get('newpassword', function () {
     return view('auth.newpassword');
 });
+//Route::delete('destroy/{userId}', 'HomeController@destroy')->name('destroy');
+Route::delete('/destroy/{userId}/{date}', 'App\Http\Controllers\HomeController@destroy')->name('destroy');
 
 Route::post('/contact', 'App\Http\Controllers\HomeController@sendContactMessage');
+Route::get('/all-users', [HomeController::class, 'getAllUsers'])->name('allUsers');

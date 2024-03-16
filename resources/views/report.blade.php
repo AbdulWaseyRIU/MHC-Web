@@ -10,7 +10,7 @@
                     <div class="column">
                         <img id="logo" src="{{ asset('graphics/logo1-modified.png')}}" alt=""><p>Maternity Health Care</p>
                     </div>
-                    <div class="column">    </div>
+                    <div class="column">         <img width="200px" src="{{ asset($imagePath) }}" alt="Uploaded Image"> </div>
                 </div>
                 <table class="custom-table">
                     <tr>
@@ -46,8 +46,19 @@
                     </tr>
                     <tr>
                         <td>Gender Prediction</td>
-                        <td>89&percnt;</td>
-                        <td>Male</td>
+                        <td>   @if ($result['result'] == 'Unclassified')
+                          ----------------
+
+                        @else
+                        {{ number_format($result['probability'] * 100, 2) }}&percnt;
+                        @endif</td>
+
+                        <td>@if ($result['result'] == 'Unclassified')
+                          Wrong Image Uploaded
+
+                          @else
+                              {{ $result['result'] }}
+                          @endif</td>
                     </tr>
                     <tr>
                         <td>Fetal growth Assessment</td>

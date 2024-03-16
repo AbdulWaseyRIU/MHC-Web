@@ -65,7 +65,7 @@
             <div class="slider-text">
                 <h2>Verify Your Email</h2>
             </div>
-        @elseif(request()->is('report') || request()->is('previousreport'))
+        @elseif(request()->is('report') || request()->is('previousreport')||request()->is('uploadimg')  )
             <img src="{{ asset('graphics/medical.png')}}" alt="">
             <div class="slider-text">
                 @if(request()->is('report'))
@@ -108,13 +108,14 @@
                     <a href="profile">Profile</a>
                     <a href="/previousreport">Previous Reports</a>
 
-                    <a  href="{{ route('logout') }}"
+                    <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                     {{ __('Logout') }}
+                             clearDisclaimerCookie();  // Add this line to clear the disclaimerShown cookie
+                             document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
                  </a>
                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                     @csrf
+                    @csrf
                  </form>
                 </div>
             </div>  @endauth
@@ -129,8 +130,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     hamburgerIcon.addEventListener('click', function () {
         nav.classList.toggle('open');
-        icon.classList.toggle('cross'); // Toggle the 'cross' class for the icon
+        icon.classList.toggle('cross');
     });
 });
+
+</script>
+<script>
+    function clearDisclaimerCookie() {
+  document.cookie = "disclaimerShown=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
 
 </script>

@@ -13,40 +13,36 @@
                 </div>
 
 
-                <table class="previousreports">
-                    <tr>
-                        <th>Report No.</th>
-                        <td>{{ $user->uid }}</td>
-                        <td>{{ $user->uid }}</td>
 
-                    </tr>
-                    <tr>
-                        <th>Name</th>
-                        <td>John Doe</td>
-                        <td>John Doe</td>
-                    </tr>
-                    <tr>
-                        <th>Gender Detection</th>
-                        <td>Male</td>
-                        <td>Female</td>
-                    </tr>
-                    <tr>
-                        <th>Gender Accuracy</th>
-                        <td>72</td>
-                        <td>64</td>
-                    </tr>
-                    <tr>
-                        <th>Growth Detection</th>
-                        <td>Normal</td>
-                        <td>Abormal</td>
-                    </tr>
-                    <tr>
-                        <th>Growth Accuracy</th>
-                        <td>81</td>
-                        <td>91</td>
-                    </tr>
+    <table border="1" class="previousreports">
+        <thead>
+            <tr>
+                <th>Confidence</th>
+                <th>Label</th>
+                <th>Analysis Type</th>
 
-                </table>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($userData as $data)
+            <tr>
+                <td>{{ $data['confidence'] }}</td>
+                <td>{{ $data['label'] }}</td>
+                <td>{{ $data['analysisType'] }}</td>
+                <td>{{ $data['Date'] }}</td>
+                <td>
+                    <form action="{{ route('destroy', ['userId' => $data['userId'], 'date' => $data['Date']]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
                 <div class="disclaimer">
                     Disclaimer:
