@@ -36,7 +36,7 @@
                     <form action="{{ route('destroy', ['userId' => $data['userId'], 'date' => $data['Date']]) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">Delete</button>
+                        <button type="submit" class="delete-button">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -68,4 +68,40 @@
         }
     </script>
 </main>
+<style>
+ .main-container form {
+    width:auto;
+    background-color: #ffffff; /* Set specific background color */
+}
+
+/* Reset or override other properties */
+.main-container form input,
+.main-container form textarea,
+.main-container form select {
+    /* Reset background color */
+    background-color: initial;
+    /* Reset other properties or set them to desired values */
+    /* Example: */
+    border: 1px solid #ccc; /* Reset or set border */
+    color: #333; /* Reset or set text color */
+    /* Add more properties as needed */
+}
+    .delete-button {
+    background-color: #f44336; /* Red */
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+</style>
 @endsection
