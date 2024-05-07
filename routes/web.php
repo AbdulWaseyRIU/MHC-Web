@@ -37,8 +37,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('uploadimg', [HomeController::class, 'uploadImage'])->name('uploadimg');
-
-
+Route::post('growthprediction', [HomeController::class, 'growthprediction'])->name('growthprediction');
+Route::get('growth', function () {
+    return view('growth');
+});
+Route::get('gender', function () {
+    return view('gender');
+});
 Route::get('/about', function () {
     return view('aboutsoftware');
 });

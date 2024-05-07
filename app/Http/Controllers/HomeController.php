@@ -102,51 +102,84 @@ class HomeController extends Controller
     }
     public function uploadImage(Request $request)
     {
+
         $file = $request->file('File');
 
         if ($file) {
-            $apiUrl = 'http://127.0.0.1:5000/predict'; // Replace with your Flask API URL
+            $apiUrl = 'http://127.0.0.1:5000/gender_pred';
 
             $client = new Client();
 
-            try {
-                $response = $client->post($apiUrl, [
-                    'multipart' => [
-                        [
-                            'name'     => 'File',
-                            'contents' => fopen($file->getPathname(), 'r'),
-                            'filename' => $file->getClientOriginalName(),
-                        ],
+
+            $response = $client->post($apiUrl, [
+                'multipart' => [
+                    [
+                        'name'     => 'File1',
+                        'contents' => fopen($file->getPathname(), 'r'),
+                        'filename' => $file->getClientOriginalName(),
                     ],
-                ]);
+                ],
+            ]);
 
-                $result = json_decode($response->getBody(), true);
+            $result = json_decode($response->getBody(), true);
+            $request = $request->request;
 
-                // Check if the result contains an error key
-                if (isset($result['error'])) {
-                    $error = $result['error'];
-                    return view('scan', compact('error'));
-                }
+            if ($request->get('check_growth') === 'yes') {
 
-                // Save result data to Firestore
-                $this->saveResultToFirestore($result);
-
-                // Save the image if needed
-                $imagePath = 'images/' . $file->getClientOriginalName(); // Define your image path
-                Storage::put($imagePath, file_get_contents($file)); // Save the image to storage
-
-                // Process the result and pass both the result and file to the report page
-                return view('report', compact('result', 'imagePath'));
-            } catch (\Exception $e) {
-                // API connection failed
-                $error = 'Server Error';
-                return view('scan', compact('error'));
+                return view('growth', compact('result'));
             }
+
+            // Check if the result contains an error key
+
+
+            // Save result data to Firestore
+            //  $this->saveResultToFirestore($result);
+
+            // Save the image if needed
+            //   $imagePath = 'images/' . $file->getClientOriginalName(); // Define your image path
+            // Storage::put($imagePath, file_get_contents($file)); // Save the image to storage
+
+            // Process the result and pass both the result and file to the report page
+
+            return view('report', compact('result'));
         }
 
 
         $error = 'No image provided';
         return view('scan', compact('error'));
+    }
+    public function growthprediction(Request $request)
+    {
+        $files = $request->file();
+
+        $apiUrl = 'http://127.0.0.1:5000/assess_growth';
+        $client = new Client();
+        $multipart = [];
+
+        // Define the desired filenames for each file
+        $filenames = ['File1', 'File2', 'File3'];
+
+        // Construct the multipart array
+        foreach ($files as $index => $file) {
+            $multipart[] = [
+                'name'     => $filenames[$index],
+                'contents' => fopen($file->getPathname(), 'r'),
+                'filename' => $filenames[$index], // Use the corresponding filename
+                'headers'  => [
+                    'Content-Type' => $file->getClientMimeType(), // Get the MIME type of the file
+                ],
+            ];
+        }
+        dd($multipart);
+
+        // Now you can proceed with sending the multipart request to the API
+        $response = $client->post($apiUrl, ['multipart' => $multipart]);
+
+        // Decode JSON response
+        $results = json_decode($response->getBody(), true);
+
+
+        return view('report', compact('results'));
     }
     public function sendContactMessage(Request $request)
     {

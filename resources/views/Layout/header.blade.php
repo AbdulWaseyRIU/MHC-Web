@@ -15,6 +15,11 @@
             <div class="slider-text">
                 <h2>Scan Here</h2>
             </div>
+            @elseif(request()->is('growth'))
+            <img src="{{ asset('graphics/scan.webp')}}" alt="">
+            <div class="slider-text">
+                <h2>Scan Here</h2>
+            </div>
         @elseif(request()->is('login'))
             <img src="{{ asset('graphics/login.webp')}}" alt="">
             <div class="slider-text">

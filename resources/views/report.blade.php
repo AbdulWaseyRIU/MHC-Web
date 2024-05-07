@@ -10,7 +10,7 @@
                     <div class="column">
                         <img id="logo" src="{{ asset('graphics/logo1-modified.png')}}" alt=""><p>Maternity Health Care</p>
                     </div>
-                    <div class="column">         <img width="200px" src="{{ asset($imagePath) }}" alt="Uploaded Image"> </div>
+
                 </div>
                 <table class="custom-table">
                     <tr>
