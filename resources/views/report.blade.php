@@ -46,24 +46,29 @@
                     </tr>
                     <tr>
                         <td>Gender Prediction</td>
-                        <td>   @if ($result['result'] == 'Unclassified')
-                          ----------------
-
-                        @else
-                        {{ number_format($result['probability'] * 100, 2) }}&percnt;
-                        @endif</td>
-
-                        <td>@if ($result['result'] == 'Unclassified')
-                          Wrong Image Uploaded
-
-                          @else
-                              {{ $result['result'] }}
-                          @endif</td>
+                        <td>
+                            @isset($result['result'])
+                                @if ($result['result'] == 'Unclassified')
+                                    ----------------
+                                @else
+                                    {{ number_format($result['probability'] * 100, 2) }}&percnt;
+                                @endif
+                            @endisset
+                        </td>
+                        <td>
+                            @isset($result['result'])
+                                @if ($result['result'] == 'Unclassified')
+                                    Wrong Image Uploaded
+                                @else
+                                    {{ $result['result'] }}
+                                @endif
+                            @endisset
+                        </td>
                     </tr>
                     <tr>
                         <td>Fetal growth Assessment</td>
                         <td>92&percnt;</td>
-                        <td>Normal</td>
+                        <td>     {{ $result['fetal_weight_status'] }}</td>
                     </tr>
                 </table>
 

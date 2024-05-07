@@ -150,36 +150,57 @@ class HomeController extends Controller
     }
     public function growthprediction(Request $request)
     {
-        $files = $request->file();
+        // Get the file information from hidden inputs
+        $file1Name = $request->input('file1_name');
+        $file1Type = $request->input('file1_type');
+        $file1Data = $request->input('file1_data');
 
+        $file2Name = $request->input('file2_name');
+        $file2Type = $request->input('file2_type');
+        $file2Data = $request->input('file2_data');
+
+        $file3Name = $request->input('file3_name');
+        $file3Type = $request->input('file3_type');
+        $file3Data = $request->input('file3_data');
+
+        // Construct multipart array for each file
+        $multipart = [
+            [
+                'name'     => 'File1',
+                'contents' => base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $file1Data)),
+                'filename' => $file1Name,
+                'headers'  => [
+                    'Content-Type' => $file1Type,
+                ],
+            ],
+            [
+                'name'     => 'File2',
+                'contents' => base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $file2Data)),
+                'filename' => $file2Name,
+                'headers'  => [
+                    'Content-Type' => $file2Type,
+                ],
+            ],
+            [
+                'name'     => 'File3',
+                'contents' => base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $file3Data)),
+                'filename' => $file3Name,
+                'headers'  => [
+                    'Content-Type' => $file3Type,
+                ],
+            ],
+        ];
+
+        // Send the multipart request to the API
         $apiUrl = 'http://127.0.0.1:5000/assess_growth';
         $client = new Client();
-        $multipart = [];
-
-        // Define the desired filenames for each file
-        $filenames = ['File1', 'File2', 'File3'];
-
-        // Construct the multipart array
-        foreach ($files as $index => $file) {
-            $multipart[] = [
-                'name'     => $filenames[$index],
-                'contents' => fopen($file->getPathname(), 'r'),
-                'filename' => $filenames[$index], // Use the corresponding filename
-                'headers'  => [
-                    'Content-Type' => $file->getClientMimeType(), // Get the MIME type of the file
-                ],
-            ];
-        }
-        dd($multipart);
-
-        // Now you can proceed with sending the multipart request to the API
         $response = $client->post($apiUrl, ['multipart' => $multipart]);
 
         // Decode JSON response
-        $results = json_decode($response->getBody(), true);
+        $result = json_decode($response->getBody(), true);
 
-
-        return view('report', compact('results'));
+        // Return the view with the results
+        return view('report', compact('result'));
     }
     public function sendContactMessage(Request $request)
     {
