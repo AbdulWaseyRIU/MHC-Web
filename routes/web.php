@@ -51,6 +51,7 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::post('contactform', [HomeController::class, 'sendContactMessage'])->name('contactform');
 Route::get('/privacy', function () {
     return view('privacypolicy');
 });

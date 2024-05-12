@@ -23,27 +23,27 @@
        </div>
        <div class="second-container">
          <h2>Send Us A Message</h2>
-         <form action="/contact" method="post">
+         <form action="/contactform" method="post">
             @csrf
-           <div class="form-group">
-             <label for="name-input">Tell us your name*</label>
-             <input id="name-input" type="text" placeholder="First name" required="">
-             <input type="text" placeholder="Last name" required="">
-           </div>
-           <div class="form-group">
-             <label for="email-input">Enter your email</label>
-             <input id="email-input" type="text" placeholder="Eg. example@gmail.com" required="">
-           </div>
-           <div class="form-group">
-             <label for="phone-input">Enter phone number</label>
-             <input id="phone-input" type="text" placeholder="Eg. 0314-5149097" required="">
-           </div>
-           <div class="form-group">
-             <label for="message-textarea">Message</label>
-             <input class="textarea" id="message-textarea" placeholder="Write us a message"></input>
-           </div>
-         <a class="btn">Send message</a>
-         </form>
+            <div class="form-group">
+                <label for="first-name-input">Tell us your name*</label>
+                <input id="first-name-input" type="text" name="first_name" placeholder="First name" required="">
+                <input id="last-name-input" type="text" name="last_name" placeholder="Last name" required="">
+            </div>
+            <div class="form-group">
+                <label for="email-input">Enter your email</label>
+                <input id="email-input" type="text" name="email" placeholder="Eg. example@gmail.com" required="">
+            </div>
+            <div class="form-group">
+                <label for="phone-input">Enter phone number</label>
+                <input id="phone-input" type="text" name="phone_number" placeholder="Eg. 0314-5149097" required="">
+            </div>
+            <div class="form-group">
+                <label for="message-textarea">Message</label>
+                <textarea class="textarea" id="message-textarea" name="message" placeholder="Write us a message"></textarea>
+            </div>
+            <button type="submit" class="btn">Send message</button>
+        </form>
        </div>
      </div>
 </div>

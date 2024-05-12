@@ -38,25 +38,22 @@
                 </table>
 
                 <p></p>
-
-                @isset($result['prediction'])
-                    <table>
+                <table>
                     <tr>
                         <th>ANALYSIS TYPE</th>
                         <th>ACCURACY LEVEL</th>
                         <th>RESULT</th>
                     </tr>
-
-                      <tr>
+                    <tr>
                         <td>Gender Prediction</td>
                         <td>
-
+                            @isset($result['prediction'])
                                 @if ($result['prediction'] == 'unclassified')
                                     ----------------
                                 @else
                                     {{ number_format($result['probability'] * 100, 1) }}&percnt;
                                 @endif
-
+                            @endisset
                         </td>
                         <td>
                             @isset($result['prediction'])
@@ -65,49 +62,12 @@
                                 @else
                                     {{ $result['prediction'] }}
                                 @endif
-                                @endisset
+                            @endisset
                         </td>
                     </tr>
 
-
-
                 </table>
-                @endisset
-                @isset($result['fetal_weight_status'])
-                <table>
-                <tr>
-                    <th>ANALYSIS TYPE</th>
-                    <th>RESULT</th>
-                    @if ($result['fetal_weight_status'] == 'Abnormal')
-                       <th>Remarks</th>
-                       @endif
 
-                </tr>
-
-                  <tr>
-                    <td>Growth Prediction</td>
-                    <td>
-                                {{ $result['fetal_weight_status'] }}
-
-
-                    </td>
-                    @if ($result['fetal_weight_status'] == 'Abnormal')               <td>
-
-                            @if ($result['fetal_weight_percentile'] < 2.5)
-                                <p>Your Baby is Weak</p>
-                            @elseif ($result['fetal_weight_percentile'] > 97.5)
-                                <p>Your Baby is Overweight</p>
-                            @else
-                                <p>Your Baby Growth is Normal</p>
-                            @endif
-
-                    </td> @endif
-                </tr>
-
-
-
-            </table>
-            @endisset
                 <div class="disclaimer">
                     Disclaimer:
                     <p>"We do not store your uploaded data. This report is for informational purposes only." </p>

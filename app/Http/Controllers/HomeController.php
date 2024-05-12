@@ -122,12 +122,9 @@ class HomeController extends Controller
             ]);
 
             $result = json_decode($response->getBody(), true);
-            $request = $request->request;
 
-            if ($request->get('check_growth') === 'yes') {
 
-                return view('growth', compact('result'));
-            }
+
 
             // Check if the result contains an error key
 
@@ -199,13 +196,19 @@ class HomeController extends Controller
         // Decode JSON response
         $result = json_decode($response->getBody(), true);
 
+
         // Return the view with the results
         return view('report', compact('result'));
     }
     public function sendContactMessage(Request $request)
     {
-        $this->firebase = (new Factory())
-            ->withServiceAccount(json_decode(json_encode($this->firebaseCredentials), true));
+        $firebase = (new Factory())->withServiceAccount(json_decode(json_encode($this->firebaseCredentials), true));
+
+        // Get the Firestore instance from Firebase
+        $firestore = $firebase->createFirestore();
+
+        // Firestore document path (adjust as needed)
+        $collectionPath = 'contact-us'; // Assuming 'contact-us' is the collection name
 
         $formData = [
             'first_name' => $request->input('first_name'),
@@ -215,21 +218,17 @@ class HomeController extends Controller
             'message' => $request->input('message'),
             'timestamp' => now()->toDateTimeString(),
         ];
-        $firebase = (new Factory())->withServiceAccount(json_decode(json_encode($this->firebaseCredentials), true));
 
-        // Get the Firestore instance from Firebase
-        $firestore = $firebase->createFirestore();
+        try {
+            // Firestore interaction: Writing form data to Firestore
+            $firestore->database()->collection($collectionPath)->add($formData);
 
-        // Firestore document path (adjust as needed)
-        $documentPath = 'Form/' . uniqid();
-
-        // Firestore interaction: Writing form data to Firestore
-        $formDocument = $firestore->database()->collection($documentPath);
-        $formDocument->document($documentPath)->set($formData);
-
-        // ... existing code (redirect, flash message, etc.) ...
-
-        return redirect('/contact')->with('success', 'Form data has been submitted successfully!');
+            // Redirect the user after successful submission
+            return redirect('/contact')->with('success', 'Form data has been submitted successfully!');
+        } catch (\Exception $e) {
+            // Handle error
+            return redirect('/contact')->with('error', 'An error occurred while submitting the form. Please try again later.');
+        }
     }
 
     private function saveResultToFirestore(array $result)

@@ -32,13 +32,7 @@
       <div class="image-title-wrap">
         <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span>
         </button>
-        <div class="checkbox-container">
-            <label class="checkbox-label" for="check_growth">
-                <input type="checkbox" id="check_growth" name="check_growth" value="yes">
 
-                <span class="checkbox-text">Do You Want to Check Growth</span>
-            </label>
-        </div>
         <button type="submit">submit</button>
     </form>
 

@@ -20,6 +20,11 @@
             <div class="slider-text">
                 <h2>Scan Here</h2>
             </div>
+            @elseif(request()->is('gender'))
+            <img src="{{ asset('graphics/scan.webp')}}" alt="">
+            <div class="slider-text">
+                <h2>Scan Here</h2>
+            </div>
         @elseif(request()->is('login'))
             <img src="{{ asset('graphics/login.webp')}}" alt="">
             <div class="slider-text">
@@ -70,7 +75,7 @@
             <div class="slider-text">
                 <h2>Verify Your Email</h2>
             </div>
-        @elseif(request()->is('report') || request()->is('previousreport')||request()->is('uploadimg')  )
+        @elseif(request()->is('report') || request()->is('previousreport') || request()->is('growthprediction')||request()->is('uploadimg')  )
             <img src="{{ asset('graphics/medical.png')}}" alt="">
             <div class="slider-text">
                 @if(request()->is('report'))
