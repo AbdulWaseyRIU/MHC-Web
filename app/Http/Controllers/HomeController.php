@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Session;
 use firebase;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Factory;
 use kreait\Firebase\Database;
 use Kreait\Firebase\Contract\Auth;
-use Kreait\Firebase\ServiceAccount;
 
+use Kreait\Firebase\ServiceAccount;
 use Illuminate\Support\Facades\Storage;
 use Google\Cloud\Firestore\FirestoreClient;
 use Kreait\Firebase\Exception\FirebaseException;
@@ -102,14 +103,12 @@ class HomeController extends Controller
     }
     public function uploadImage(Request $request)
     {
-
         $file = $request->file('File');
 
         if ($file) {
             $apiUrl = 'http://127.0.0.1:5000/gender_pred';
 
             $client = new Client();
-
 
             $response = $client->post($apiUrl, [
                 'multipart' => [
@@ -123,24 +122,35 @@ class HomeController extends Controller
 
             $result = json_decode($response->getBody(), true);
 
+            $uid = Session::get('uid');
+            $user = app('firebase.auth')->getUser($uid);
+            $userId = $user->uid;
+            $formattedDate = Carbon::now()->format('Y-m-d h:i:s A');
+            $confidence = number_format($result['probability'] * 100, 1) . '%';
+            $data = [
+                'Date' => $formattedDate,
+                'analysisType' => 'Gender Prediction',
+                'confidence' => $confidence,
+                'label' => $result['prediction'],
+                'userId' => $userId,
+            ];
+
+            $firebase = (new Factory())->withServiceAccount($this->firebaseCredentials);
+            $firestore = $firebase->createFirestore();
+
+            // Specify the collection name for predictions
+            $collectionName = 'Predictions';
+
+            // Reference to the 'Predictions' collection
+            $collectionRef = $firestore->database()->collection($collectionName);
+
+            // Add data to Firestore
+            $collectionRef->add($data);
 
 
-
-            // Check if the result contains an error key
-
-
-            // Save result data to Firestore
-            //  $this->saveResultToFirestore($result);
-
-            // Save the image if needed
-            //   $imagePath = 'images/' . $file->getClientOriginalName(); // Define your image path
-            // Storage::put($imagePath, file_get_contents($file)); // Save the image to storage
-
-            // Process the result and pass both the result and file to the report page
 
             return view('report', compact('result'));
         }
-
 
         $error = 'No image provided';
         return view('scan', compact('error'));
